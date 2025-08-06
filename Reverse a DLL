@@ -1,0 +1,24 @@
+class DLLNode:
+    def __init__(self, val):
+        self.data = val
+        self.next = None
+        self.prev = None
+
+class Solution:
+    def reverseDLL(self, head):
+        if not head:
+            return None
+
+        current = head
+        prev_node = None
+
+        while current:
+            # Swap next and prev
+            current.prev, current.next = current.next, current.prev
+
+            # Move to next node in original list (which is now current.prev)
+            prev_node = current
+            current = current.prev
+
+        # prev_node is the new head of the reversed list
+        return prev_node
